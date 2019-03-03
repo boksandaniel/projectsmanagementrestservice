@@ -13,28 +13,37 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "user")
-public class UserEntity extends BaseEntity
+@Table(name = "user_table")
+public class UserEntity
 {
-    @NotNull
-    @Column(name = "username")
-    private String userName;
+    @Email
+    @Id
+    @NotEmpty
+    @Column(unique = true)
+    private String email;
 
-    @NotNull
+    @NotEmpty
+    @Column(name = "username")
+    private String name;
+
+    @NotEmpty
     @Size(min = 6)
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role userRole;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private List<TaskEntity> userTask;
 
-    @Email
-    @Column
-    private String email;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLES", joinColumns = {
+            @JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")}, inverseJoinColumns = {
+            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "userName")})
+    private List<RoleEntity>  userRoles;
 
-    public List<GrantedAuthority> userAuthorities()
+    public UserEntity(String email,  String name, String password)
     {
-        return AuthorityUtils.createAuthorityList(userRole.getRoleName());
+        this.email = email;
+        this.name = name;
+        this.password = password;
     }
-
 }
