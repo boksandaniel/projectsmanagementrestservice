@@ -1,9 +1,7 @@
 package projectsmanagement.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,38 +11,38 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class RoleEntity
+public class Role
 {
     //Instance fields
     @Id
-    private String userName;
+    private String name;
     @ManyToMany(mappedBy = "userRoles")
-    private List<UserEntity> usersRole;
+    private List<User> usersRole;
 
     //Getters and setters
     public String getUserName()
     {
-        return userName;
+        return name;
     }
 
     public void setUserName(String userName)
     {
-        this.userName = userName;
+        this.name = userName;
     }
 
-    public List<UserEntity> getUsersRole()
+    public List<User> getUsersRole()
     {
         return usersRole;
     }
 
-    public void setUsersRole(List<UserEntity> usersRole)
+    public void setUsersRole(List<User> usersRole)
     {
         this.usersRole = usersRole;
     }
 
     //Constructor
-    public RoleEntity(String userName)
+    public Role(String userName)
     {
-        this.userName = userName;
+        this.name = userName;
     }
 }

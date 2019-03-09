@@ -1,11 +1,11 @@
 package projectsmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import projectsmanagement.entity.UserEntity;
+import projectsmanagement.entity.User;
 
 
-public interface UserRepository extends JpaRepository<UserEntity, String>
+public interface UserRepository extends JpaRepository<User, String>
 {
-    UserEntity findOne(String name);
+    User findByEmail(String email);
 
 }

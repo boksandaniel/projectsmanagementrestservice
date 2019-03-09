@@ -2,8 +2,8 @@ package projectsmanagement.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projectsmanagement.entity.TaskEntity;
-import projectsmanagement.entity.UserEntity;
+import projectsmanagement.entity.Task;
+import projectsmanagement.entity.User;
 import projectsmanagement.repository.TaskRepository;
 
 import java.util.List;
@@ -14,13 +14,13 @@ public class TaskService
     @Autowired
     private TaskRepository taskRepository;
 
-    public void addTask(TaskEntity taskEntity, UserEntity userEntity)
+    public void addTask(Task task, User userEntity)
     {
-        taskEntity.setUserEntity(userEntity);
-        taskRepository.save(taskEntity);
+        task.setUser(userEntity);
+        taskRepository.save(task);
     }
 
-    public List<TaskEntity> findUserTask(UserEntity userEntity)
+    public List<Task> findUserTask(User userEntity)
     {
         return taskRepository.findByUser(userEntity);
     }

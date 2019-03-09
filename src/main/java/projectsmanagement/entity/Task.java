@@ -1,15 +1,12 @@
 package projectsmanagement.entity;
-
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.text.SimpleDateFormat;
 
 @Entity
-public class TaskEntity
+public class Task
 {
     //Instance fields
-
     @Id
     @GeneratedValue
     private Long id;
@@ -29,7 +26,7 @@ public class TaskEntity
 
     @ManyToOne
     @JoinColumn(name = "USER_EMAIL")
-    private UserEntity userEntity;
+    private User user;
 
     //Getters and setters
     public Long getId()
@@ -82,28 +79,28 @@ public class TaskEntity
         this.taskDescription = taskDescription;
     }
 
-    public UserEntity getUserEntity()
+    public User getUser()
     {
-        return userEntity;
+        return user;
     }
 
-    public void setUserEntity(UserEntity userEntity)
+    public void setUser(User user)
     {
-        this.userEntity = userEntity;
+        this.user = user;
     }
 
 
     //Constructors
-    public TaskEntity(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription, UserEntity userEntity)
+    public Task(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription, User user)
     {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.taskDescription = taskDescription;
-        this.userEntity = userEntity;
+        this.user = user;
     }
 
-    public TaskEntity(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription)
+    public Task(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription)
     {
         this.date = date;
         this.startTime = startTime;

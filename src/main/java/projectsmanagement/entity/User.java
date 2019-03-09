@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-public class UserEntity
+public class User
 {
     //Instance fields
     @Email
@@ -25,14 +25,14 @@ public class UserEntity
     @Size(min = 6)
     private String password;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private List<TaskEntity> userTask;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {
             @JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")}, inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "userName")})
-    private List<RoleEntity>  userRoles;
+            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")})
+    private List<Role>  userRoles;
 
     //Geters and setters
     public String getEmail()
@@ -65,28 +65,28 @@ public class UserEntity
         this.password = password;
     }
 
-    public List<TaskEntity> getUserTask()
+    public List<Task> getUserTask()
     {
-        return userTask;
+        return tasks;
     }
 
-    public void setUserTask(List<TaskEntity> userTask)
+    public void setUserTask(List<Task> userTask)
     {
-        this.userTask = userTask;
+        this.tasks = userTask;
     }
 
-    public List<RoleEntity> getUserRoles()
+    public List<Role> getUserRoles()
     {
         return userRoles;
     }
 
-    public void setUserRoles(List<RoleEntity> userRoles)
+    public void setUserRoles(List<Role> userRoles)
     {
         this.userRoles = userRoles;
     }
 
     //Constructor
-    public UserEntity(String email,  String name, String password)
+    public User(String email, String name, String password)
     {
         this.email = email;
         this.name = name;
