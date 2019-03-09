@@ -1,34 +1,28 @@
 package projectsmanagement.entity;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-
-import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 @NoArgsConstructor
-@Table(name = "user_table")
 public class UserEntity
 {
+    //Instance fields
     @Email
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotEmpty
     @Column(unique = true)
     private String email;
 
     @NotEmpty
-    @Column(name = "username")
     private String name;
 
     @NotEmpty
     @Size(min = 6)
-    @Column(name = "password")
     private String password;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
@@ -40,6 +34,58 @@ public class UserEntity
             @JoinColumn(name = "ROLE_NAME", referencedColumnName = "userName")})
     private List<RoleEntity>  userRoles;
 
+    //Geters and setters
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public List<TaskEntity> getUserTask()
+    {
+        return userTask;
+    }
+
+    public void setUserTask(List<TaskEntity> userTask)
+    {
+        this.userTask = userTask;
+    }
+
+    public List<RoleEntity> getUserRoles()
+    {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<RoleEntity> userRoles)
+    {
+        this.userRoles = userRoles;
+    }
+
+    //Constructor
     public UserEntity(String email,  String name, String password)
     {
         this.email = email;

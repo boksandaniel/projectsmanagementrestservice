@@ -6,4 +6,6 @@ import projectsmanagement.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, String>
 {
+    UserEntity findOne(String name);
+
 }
