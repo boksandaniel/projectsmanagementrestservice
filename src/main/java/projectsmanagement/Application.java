@@ -9,24 +9,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+
 @SpringBootApplication
 @Configuration
 @ComponentScan
 public class Application
-        implements CommandLineRunner
 {
-    private final static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args)
     {
-        ApplicationContext context = SpringApplication.run(Application.class, args);
-
-        SpringApplication.exit(context);
-    }
-
-    @Override
-    public void run(String... args) throws Exception
-    {
-        logger.info("Application started successfuly.");
+        SpringApplication.run(Application.class, args);
     }
 }

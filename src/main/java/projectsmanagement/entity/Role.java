@@ -16,6 +16,7 @@ public class Role
     //Instance fields
     @Id
     private String name;
+
     @ManyToMany(mappedBy = "userRoles")
     private List<User> usersRole;
 

@@ -18,5 +18,6 @@ spring:
       enabled: false
 server:
   port: 8080
+  contextPath: /context-path
 logging:
   file: eventbooker.log
