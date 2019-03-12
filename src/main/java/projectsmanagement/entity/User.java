@@ -1,25 +1,23 @@
 package projectsmanagement.entity;
 
-import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
 
 
 @Entity
-@NoArgsConstructor
+@Table(name = "user")
 public class User
 {
     //Instance fields
     @Email
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotEmpty
     @Column(unique = true)
     private String email;
 
     @NotEmpty
-    private String name;
+    private String userName;
 
     @NotEmpty
     @Size(min = 6)
@@ -31,7 +29,7 @@ public class User
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {
             @JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")}, inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")})
+            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "roleName")})
     private List<Role>  userRoles;
 
     //Geters and setters
@@ -45,14 +43,14 @@ public class User
         this.email = email;
     }
 
-    public String getName()
+    public String getUserName()
     {
-        return name;
+        return userName;
     }
 
-    public void setName(String name)
+    public void setUserName(String userName)
     {
-        this.name = name;
+        this.userName = userName;
     }
 
     public String getPassword()
@@ -85,11 +83,13 @@ public class User
         this.userRoles = userRoles;
     }
 
-    //Constructor
-    public User(String email, String name, String password)
+    //Constructors
+    public User(String email, String userName, String password)
     {
         this.email = email;
-        this.name = name;
+        this.userName = userName;
         this.password = password;
     }
+
+    public User() { }
 }

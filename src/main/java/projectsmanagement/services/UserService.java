@@ -42,4 +42,12 @@ public class UserService
     {
         return userRepository.findByEmail(email);
     }
+
+    public boolean isUserPresent(String email)
+    {
+        User user = userRepository.findByEmail(email);
+        if(user !=null)
+            return true;
+        return false;
+    }
 }

@@ -6,16 +6,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "role")
 public class Role
 {
     //Instance fields
     @Id
-    private String name;
+    private String roleName;
 
     @ManyToMany(mappedBy = "userRoles")
     private List<User> usersRole;
@@ -23,12 +25,12 @@ public class Role
     //Getters and setters
     public String getUserName()
     {
-        return name;
+        return roleName;
     }
 
     public void setUserName(String userName)
     {
-        this.name = userName;
+        this.roleName = userName;
     }
 
     public List<User> getUsersRole()
@@ -44,6 +46,6 @@ public class Role
     //Constructor
     public Role(String userName)
     {
-        this.name = userName;
+        this.roleName = userName;
     }
 }

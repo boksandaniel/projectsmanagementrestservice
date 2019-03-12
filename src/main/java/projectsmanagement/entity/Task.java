@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import java.text.SimpleDateFormat;
 
 @Entity
+@Table(name = "task")
 public class Task
 {
     //Instance fields
