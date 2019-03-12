@@ -6,7 +6,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "user")
+@Table(name="APP_User")
 public class User
 {
     //Instance fields
