@@ -29,9 +29,9 @@
         </div>
 
         <div class="form-group">
-            <label for="userName" class="form-control-label">userName</label>
-            <input type="text" class="form-control" th:field="*{userName}" id="userName" />
-            <div class="text text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+            <label for="name" class="form-control-label">name</label>
+            <input type="text" class="form-control" th:field="*{name}" id="name" />
+            <div class="text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary" />
     </form>

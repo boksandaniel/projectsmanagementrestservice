@@ -17,7 +17,7 @@ public class User
     private String email;
 
     @NotEmpty
-    private String userName;
+    private String name;
 
     @NotEmpty
     @Size(min = 6)
@@ -43,14 +43,14 @@ public class User
         this.email = email;
     }
 
-    public String getUserName()
+    public String getName()
     {
-        return userName;
+        return name;
     }
 
-    public void setUserName(String userName)
+    public void setName(String name)
     {
-        this.userName = userName;
+        this.name = name;
     }
 
     public String getPassword()
@@ -84,10 +84,10 @@ public class User
     }
 
     //Constructors
-    public User(String email, String userName, String password)
+    public User(String email, String name, String password)
     {
         this.email = email;
-        this.userName = userName;
+        this.name = name;
         this.password = password;
     }
 

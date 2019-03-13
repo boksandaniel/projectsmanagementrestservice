@@ -9,6 +9,7 @@ import projectsmanagement.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService
@@ -40,14 +41,19 @@ public class UserService
 
     public User findOne(String email)
     {
-        return userRepository.findByEmail(email);
+        return userRepository.findOneByEmail(email);
     }
 
     public boolean isUserPresent(String email)
     {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findOneByEmail(email);
         if(user !=null)
             return true;
         return false;
+    }
+
+    public List<User> findByName(String name)
+    {
+        return userRepository.findByNameLike("%"+name+"%");
     }
 }
