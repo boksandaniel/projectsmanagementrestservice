@@ -1,7 +1,10 @@
 package projectsmanagement.entity;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "task")
@@ -16,10 +19,10 @@ public class Task
     private String date;
 
     @NotEmpty
-    private SimpleDateFormat startTime;
+    private String startTime;
 
     @NotEmpty
-    private SimpleDateFormat endTime;
+    private String endTime;
 
     @NotEmpty
     @Column(length = 100)
@@ -50,22 +53,22 @@ public class Task
         this.date = date;
     }
 
-    public SimpleDateFormat getStartTime()
+    public String getStartTime()
     {
         return startTime;
     }
 
-    public void setStartTime(SimpleDateFormat startTime)
+    public void setStartTime(String startTime)
     {
         this.startTime = startTime;
     }
 
-    public SimpleDateFormat getEndTime()
+    public String getEndTime()
     {
         return endTime;
     }
 
-    public void setEndTime(SimpleDateFormat endTime)
+    public void setEndTime(String endTime)
     {
         this.endTime = endTime;
     }
@@ -92,7 +95,7 @@ public class Task
 
 
     //Constructors
-    public Task(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription, User user)
+    public Task(String date, String startTime, String endTime, String taskDescription, User user)
     {
         this.date = date;
         this.startTime = startTime;
@@ -101,11 +104,13 @@ public class Task
         this.user = user;
     }
 
-    public Task(String date, SimpleDateFormat startTime, SimpleDateFormat endTime, String taskDescription)
+    public Task(String date, String startTime, String endTime, String taskDescription)
     {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.taskDescription = taskDescription;
     }
+
+    public Task() {}
 }
