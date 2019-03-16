@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "task")
+@Table(name = "APP_TASK")
 public class Task
 {
     //Instance fields
