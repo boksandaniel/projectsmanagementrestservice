@@ -15,14 +15,12 @@ import java.util.List;
 @Table(name = "APP_ROLE")
 public class Role
 {
-    //Instance fields
     @Id
     private String roleName;
 
     @ManyToMany(mappedBy = "userRoles")
     private List<User> usersRole;
 
-    //Getters and setters
     public String getUserName()
     {
         return roleName;
@@ -43,7 +41,6 @@ public class Role
         this.usersRole = usersRole;
     }
 
-    //Constructor
     public Role(String userName)
     {
         this.roleName = userName;

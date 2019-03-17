@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import projectsmanagement.services.TaskService;
-import projectsmanagement.services.UserService;
 
 import javax.sql.DataSource;
 
@@ -20,20 +18,15 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Autowired
-    private DataSource dataSource;
+    DataSource dataSource;
+
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TaskService taskService;
-
-    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select email as principal, password as credentials, true from user where email = ?")
-                .authoritiesByUsernameQuery("select user_email as principal, role_name as role from user_roles where user_email = ?")
+                .usersByUsernameQuery("select email as principal, password as credentials, true from app_user where email=?")
+                .authoritiesByUsernameQuery("select user_email as principal, role_name as role from user_roles where user_email=?")
                 .passwordEncoder(passwordEncoder()).rolePrefix("ROLE_");
 
     }
@@ -56,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
+                .usernameParameter("email")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
     }
 

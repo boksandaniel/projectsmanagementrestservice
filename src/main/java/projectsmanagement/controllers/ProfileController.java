@@ -22,8 +22,8 @@ public class ProfileController
     @GetMapping("/profile")
     public String showProfile(Model model, Principal principal)
     {
-        String email = principal.getName();
-        User user = userService.findOne(email);
+        String userEmail = principal.getName();
+        User user = userService.findOne(userEmail);
 
         model.addAttribute("tasks", taskService.findUserTask(user));
 
