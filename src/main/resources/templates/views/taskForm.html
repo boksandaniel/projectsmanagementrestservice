@@ -35,7 +35,6 @@
             <textarea class="form-control" th:field="*{taskDescription}" id="taskDescription"></textarea>
             <div class="text text-danger" th:if="${#fields.hasErrors('taskDescription')}" th:errors="*{taskDescription}"></div>
         </div>
-
         <input type="submit" value="Submit" class="btn btn-primary" />
     </form>
 </div>

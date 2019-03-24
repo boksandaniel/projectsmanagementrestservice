@@ -3,7 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">
 <head>
-    <title>Index Page</title>
+<title>Index Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -21,20 +23,27 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Add</th>
+                    <th>Add Task</th>
+                    <th>Delete User</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="user:${users}">
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.email}"></td>
-                    <td><a  th:href="@{/addTask(email=${user.email})}" class="btn btn-dark">AddTask</a></td>
+                    <td><a  th:href="@{/addTask(email=${user.email})}" class="btn btn-dark">Add Task</a></td>
+                    <td><a  th:href="'/users/delete?email=' + ${user.email}"
+                            onclick="return confirm('Delete this user ?')"
+                            class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                    </td>
                 </tr>
                 </tbody>
-
             </table>
         </div>
     </div>
+    <div class="container mySpace"></div>
 </div>
 </body>
 </html>
