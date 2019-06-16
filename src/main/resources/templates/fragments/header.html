@@ -1,7 +1,11 @@
 <header th:fragment="header" xmlns:th="http://www.springframework.org/schema/security"
         xmlns:sec="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/">LOGO</a>
+        <a href="/" class="logo">
+            <span class="logo-mini"></span>
+            <span class="logo"><img class="img-responsive" src="../static/css/logo.png" width="60" th:src="@{/img/logo.png}"/></span>
+        </a>
+<!--            <img src="../static/css/img/logo.png"  width="50"  th:src="@{img/logo.png}"/>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,13 +15,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item"    sec:authorize="!isAuthenticated()">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
-                <li class="nav-item"  sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/login">Log in</a>
-                </li>
-                <li class="nav-item"   sec:authorize="isAuthenticated()"  >
+<!--                <li class="nav-item"  sec:authorize="!isAuthenticated()">-->
+<!--                    <a class="nav-link" href="/login">Login</a>-->
+<!--                </li>-->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -27,10 +31,16 @@
                     <a class="nav-link" href="/">About</a>
                  </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post"  sec:authorize="isAuthenticated()">
+            <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                <span class="showName" sec:authentication="name"></span>
                 <input class="form-control mr-sm-2" type="hidden" />
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
             </form>
+            <a class="form-inline my-2 my-lg-0" href="/login" method="post" sec:authorize="!isAuthenticated()"
+                style="text-decoration:none">
+                <input class="form-control mr-sm-2" type="hidden"/>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
+            </a>
         </div>
     </nav>
 </header>
