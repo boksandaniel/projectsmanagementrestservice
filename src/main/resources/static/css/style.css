@@ -1,0 +1,16 @@
+.mySpace{
+padding-top: 30px;
+}
+
+.showName{
+margin-right: 20px;
+color: white;
+font-size: 20px;
+}
+.decoration {
+    background-image: url(../images/landing/decorative-symbols.png);
+.decoration {
+    background: url(../images/landing/decorative-symbols-sm.png) 0 0 no-repeat;
+    width: 120px;
+    height: 120px;
+}
